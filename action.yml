@@ -1,0 +1,22 @@
+name: "Meow! App Auth"
+description: "GitHub App Auth Login"
+branding:
+  icon: "heart"
+  color: "gray-dark"
+inputs:
+  app-id:
+    description: "GitHub App ID"
+    required: true
+  installation-id:
+    description: "GitHub App Installation ID"
+    required: true
+  key-base64:
+    description: "GitHub App Key encoded as base64"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:  
+    MEOWGHAUTH_KEY: ${{ inputs.key-base64 }}
+    MEOWGHAUTH_INSTALLATION_ID: ${{ inputs.installation-id }}
+    MEOWGHAUTH_APP_ID: ${{ inputs.app-id }}
